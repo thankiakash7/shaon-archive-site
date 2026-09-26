@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos are stored in the site, and how the CMS
+# writes their path into content/gallery.json (must match how
+# script.js reads it: a path starting with "images/").
+media_folder: "images"
+public_folder: "images"
+
+# Shows real photos instead of file icons while picking one to edit.
+# TODO after you deploy: replace both URLs below with your real Netlify
+# address (e.g. https://your-site-name.netlify.app). Not required for
+# the CMS to work, it only affects the "View site" link inside it.
+site_url: https://your-site-name.netlify.app
+display_url: https://your-site-name.netlify.app
+
+collections:
+  - name: "gallery"
+    label: "Photo Gallery"
+    files:
+      - name: "photos"
+        label: "Photos"
+        description: "Add, remove, reorder or edit the photos shown in the Selected Work section. Changes go live within a minute or two of publishing."
+        file: "content/gallery.json"
+        fields:
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - label: "Photo"
+                name: "image"
+                widget: "image"
+                media_library:
+                  config:
+                    multiple: false
+              - label: "Title"
+                name: "caption"
+                widget: "string"
+                hint: "Shown when the photo is opened full-size. Keep it short, a few words."
+              - label: "Description"
+                name: "alt"
+                widget: "text"
+                hint: "A plain description of what's in the photo, for people using screen readers and for search engines. A sentence or two is plenty."
+              - label: "Categories"
+                name: "tags"
+                widget: "select"
+                multiple: true
+                min: 1
+                options:
+                  - { label: "Street", value: "street" }
+                  - { label: "Coast", value: "coast" }
+                  - { label: "Portraits", value: "portraits" }
+                  - { label: "Black & White", value: "bw" }
+                  - { label: "Design", value: "design" }
+                hint: "Pick every category that fits. These control the filter buttons above the gallery."
+              - label: "Display this extra wide"
+                name: "span"
+                widget: "boolean"
+                default: false
+                hint: "Turn on for a photo you want to stand out, it'll take up two grid columns instead of one. Works best with wide (landscape) photos."
+              - label: "This is a black & white photo"
+                name: "bw"
+                widget: "boolean"
+                default: false
+                hint: "Turn on for black & white photos. Turns on the Black & White filter for it and adjusts how it displays slightly."
