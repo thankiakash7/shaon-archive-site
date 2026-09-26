@@ -12,8 +12,8 @@ public_folder: "images"
 # TODO after you deploy: replace both URLs below with your real Netlify
 # address (e.g. https://your-site-name.netlify.app). Not required for
 # the CMS to work, it only affects the "View site" link inside it.
-site_url: https://your-site-name.netlify.app
-display_url: https://your-site-name.netlify.app
+site_url: https://shaonarchive.netlify.app/
+display_url: https://shaonarchive.netlify.app/
 
 collections:
   - name: "gallery"
